@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>El Bote Online</title>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+  </head>
+  <style>
+    html{
+      text-align: center;
+      margin: 0 auto;
+      padding: 50px;
+      background-color: aqua;
+    }
+    body{
+      background-color: aquamarine;
+      padding: 50px;
+    }
+    .app{
+      background-color: darkgrey;
+    }
+    .empezar, .salir{
+      margin: 20px;
+      padding: 5px;
+    }
+    .instalar{
+      color: darkred;
+    }
+  </style>
+  <body>
+
+    <div class="intro">
+
+      <h1>El Bote Online</h1>
+
+      <h2>Como nunca antes lo habías imaginado</h2>
+
+      <span>
+        Ésta aplicación desarrollada en Ethereum y accesible a través de Metamask nos permitirá jugar al juego más antiguo del mundo a través de todo Internet. Desde cualquier parte del mundo, un nuevo jugador podrá participar en este apasionante juego del bote.
+        <br><br>
+        Esto no es scam ni nada por el estilo. El propósito último de esta dapp (aplicación descentralizada) es totalmente lúdico (además de poder ser el afortunado del bote). Y darle a los juegos de azar una dimensión que antes no tenían. Cuantos más participantes, mayor será el premio y mayor será el interés de nuevos jugadores que querrán sumarse al frenético poder del azar.
+        <br><br>
+        Aquí puede consultar el código fuente de la dapp: <a target="_blank" href='https://etherscan.io/address/0xfd66475c36543fefe8a4d6736c7f90ccc75ef193#code'>https://etherscan.io/address/0xfd66475c36543fefe8a4d6736c7f90ccc75ef193#code</a>
+      </span>
+
+      <h3>Cómo funciona</h3>
+
+      <h4>Cómo ganar dinero con el juego del bote</h4>
+
+      <h3>Conecta con Metamask</h3>
+
+      <span>Empiece conectando con su cuenta de Metamask (Cada vez que recargue la página deberá hacerlo)</span>
+
+    </div>
+
+    <button class="empezar"><b>Conectar Metamask</b></button>
+    <span class="instalar"><br><b>Metamask no está instalado. <a href='https://metamask.io/' target='_blank'>Instale Metamask</a> y posteriormente recargue la página. <br>Asegúrese además de no estar en modo incógnito, entonces Metamask no podrá funcionar.</b></span>  
+    
+
+    <div class="app">
+
+      <div class="intro" id="intro">
+        <h2>Account: <span class="showAccount"></span></h2>
+        <h2>Balance: <span class="showBalance"></span></h2>
+        <hr>
+        <button class="sendEthButton btn">send ether</button>
+      </div>
+      
+    </div>
+
+    <button class="salir"><b>Salir</b></button>
+
+    <script>
+      var address = '0xFD66475C36543FEfE8a4D6736C7F90ccc75Ef193';
+      var ABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"showBote","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"showWinner","type":"event"},{"stateMutability":"payable","type":"fallback"},{"inputs":[],"name":"balanceTotal","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"bote","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"changeOwner","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"end","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAfiliadoInfo","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"level","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pushAfiliado","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"n","type":"uint256"}],"name":"returnAfiliadoListaConversiones","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"n","type":"uint256"}],"name":"returnAfiliadoListaIngresos","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"addr_afiliado","type":"address"}],"name":"setAfiliado","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"start","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tiempo","outputs":[{"internalType":"uint256","name":"inicio","type":"uint256"},{"internalType":"uint256","name":"_final","type":"uint256"},{"internalType":"uint256","name":"ahora","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"verBonus","outputs":[{"internalType":"uint256","name":"_balanceTotal","type":"uint256"},{"internalType":"uint256","name":"_bote","type":"uint256"},{"internalType":"uint256","name":"_bonus","type":"uint256"},{"internalType":"uint256","name":"_level","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"n","type":"uint256"}],"name":"verGanadores","outputs":[{"internalType":"address","name":"_winner","type":"address"},{"internalType":"uint256","name":"_start","type":"uint256"},{"internalType":"uint256","name":"_end","type":"uint256"},{"internalType":"uint256","name":"_premio","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"verGanadoresLenght","outputs":[{"internalType":"uint256","name":"n","type":"uint256"}],"stateMutability":"view","type":"function"},{"stateMutability":"payable","type":"receive"}];
+      web3 = new Web3(window.ethereum);
+      dapp = new web3.eth.Contract(ABI, address);
+      //https://cryptozombies.io/en/lesson/6
+      //https://www.youtube.com/watch?v=NseL8v9EH_Q
+      //https://dappsdev.org/blog/2020-10-05-how-to-init-a-dapp-with-web3-js-using-metamask-8/
+      document.querySelector('.app').style.display='none';
+      document.querySelector('.salir').style.display='none';
+      document.querySelector('.empezar').style.display='none';
+      document.querySelector('.instalar').style.display='none';
+      if(typeof window.ethereum !== 'undefined'){
+          document.querySelector('.empezar').style.display='inline';
+      }else{
+          document.querySelector('.instalar').style.display='inline';
+      }
+      const salir = document.querySelector('.salir');
+      salir.addEventListener('click', () => {
+        location.reload();
+      });
+      const empezar = document.querySelector('.empezar');
+      empezar.addEventListener('click', () => {
+        DApp.init();
+      });
+      const DApp = {
+        web3: null,
+        contracts: {},
+        accounts: [],
+        init: function() {
+          return DApp.initWeb3();
+        },
+        initWeb3: async function () {
+          if (typeof window.ethereum !== 'undefined') {
+            try {
+              const accounts = await window.ethereum.request({
+                method: 'eth_requestAccounts',
+              });
+              DApp.updateAccounts(accounts);
+              ethereum.autoRefreshOnNetworkChange = false;
+              window.ethereum.on('accountsChanged', DApp.updateAccounts);
+            } catch (error) {
+              console.error('User denied web3 access');
+              return;
+            }
+            DApp.web3 = new Web3(window.ethereum);
+          }
+          else if (window.web3) {
+            DApp.web3 = new Web3(web3.currentProvider);
+          }
+          else {
+            console.error('No web3 provider detected');
+            return;
+          }
+          return DApp.initContract();
+        },
+        updateAccounts: async function(accounts) {
+          const firstUpdate = !(DApp.accounts && DApp.accounts[0]);
+          DApp.accounts = accounts || await DApp.web3.eth.getAccounts();
+          console.log('updateAccounts', accounts[0]);
+          if (!firstUpdate) {
+            DApp.render();
+          }
+        },
+        initContract: async function() {
+          DApp.contracts.MySmartContract = dapp;
+          console.log('Election', DApp.contracts.MySmartContract);
+          return DApp.render();
+        },
+        render: async function() {
+          document.querySelector('.app').style.display='inline';
+          document.querySelector('.salir').style.display='inline';
+          document.querySelector('.intro').style.display='none';
+          document.querySelector('.empezar').style.display='none';
+          account=DApp.accounts[0]
+          console.log(account);
+          const showAccount = document.querySelector('.showAccount');
+          showAccount.innerHTML = account;
+          const showBalance = document.querySelector('.showBalance');
+          const balance = await ethereum.request({
+              method: 'eth_getBalance',
+              params: [account, "latest"],
+          });
+          const read = parseInt(balance)/10**18;
+          console.log(read.toFixed(5));
+          showBalance.innerHTML = read.toFixed(5);
+          let balancetotal = dapp.methods.balanceTotal().call();
+          console.log(balancetotal);
+
+          //GAS
+          //pushAfiliado = 59859 gas
+        },
+      };
+    </script>
+
+
+
+  </body>
+</html>
